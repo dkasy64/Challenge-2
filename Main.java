@@ -12,7 +12,9 @@ import git.tools.client.GitSubprocessClient;
 public class Main {
     
     public static void main (String[] args) {
+        
         String repoPath = "/Users/ryanseely/Desktop/Quinnipiac/Freshman/CSC111/MazeProject/Maze.java";
+        GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
         JFrame frame = new JFrame("Swing Demo");
         frame.setSize(800,600);
         frame.setLocationRelativeTo(null);
@@ -28,6 +30,26 @@ public class Main {
         helloLabel.setLocation(50,50);
         mainPanel.add(helloLabel);
 
+        JButton ignoreButton = new JButton("Git Ignore and Readme");
+        ignoreButton.setSize(100,50);
+        ignoreButton.setLocation(80,100);
+        ignoreButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                String gitAddFile = gitSubprocessClient.gitAddFile("README.md");
+                String gitAddignore = gitSubprocessClient.gitAddFile(".gitignore");
+
+               
+            }
+        });
+        mainPanel.add(ignoreButton);
+
+        frame.setVisible(true);
+            
+        
+       
+
         JButton clickMeButton = new JButton("Click me");
         clickMeButton.setSize(100,50);
         clickMeButton.setLocation(50,200);
@@ -35,7 +57,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                
-                GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
+               
                 helloLabel.setText("Goodbye All");
             }
         });
@@ -44,6 +66,6 @@ public class Main {
 
         frame.setVisible(true);
 
-        
+
     }
 }
