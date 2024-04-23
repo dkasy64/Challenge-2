@@ -7,8 +7,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import git.tools.client.GitSubprocessClient;
+
 public class Main {
+    
     public static void main (String[] args) {
+        String repoPath = "/Users/ryanseely/Desktop/Quinnipiac/Freshman/CSC111/MazeProject/Maze.java";
         JFrame frame = new JFrame("Swing Demo");
         frame.setSize(800,600);
         frame.setLocationRelativeTo(null);
@@ -30,7 +34,8 @@ public class Main {
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("testing time");
+               
+                GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
                 helloLabel.setText("Goodbye All");
             }
         });
@@ -38,5 +43,7 @@ public class Main {
 
 
         frame.setVisible(true);
+
+        
     }
 }
