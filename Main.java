@@ -8,8 +8,13 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import git.tools.client.GitSubprocessClient;
 
+import git.tools.client.GitSubprocessClient;
+
 public class Main {
+    
     public static void main (String[] args) {
+        String repoPath = "/Users/ryanseely/Desktop/Quinnipiac/Freshman/CSC111/MazeProject/Maze.java";
+        GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
         JFrame frame = new JFrame("Swing Demo");
         frame.setSize(800,600);
         frame.setLocationRelativeTo(null);
@@ -22,22 +27,30 @@ public class Main {
 
         JLabel helloLabel = new JLabel("Hello World");
         helloLabel.setSize(100,100);
-        helloLabel.setLocation(50,50);
+        helloLabel.setLocation(50,20);
         mainPanel.add(helloLabel);
 
-        JButton clickMeButton = new JButton("Turn Project to Repo");
-        clickMeButton.setSize(100,50);
-        clickMeButton.setLocation(50,200);
+        JButton clickMeButton = new JButton("1.Turn Project to Repo");
+        clickMeButton.setSize(200,50);
+        clickMeButton.setLocation(50,100);
+
+        JButton push = new JButton("2.Initial Push");
+        push.setSize(200,50);
+        push.setLocation(50,150);
+
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
+               
                 helloLabel.setText("Goodbye All");
             }
         });
         mainPanel.add(clickMeButton);
+        mainPanel.add(push);
 
-
+        
         frame.setVisible(true);
+
+        
     }
 }
