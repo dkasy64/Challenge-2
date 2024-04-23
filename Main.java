@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import git.tools.client.GitSubprocessClient;
 
 public class Main {
     public static void main (String[] args) {
@@ -13,7 +14,7 @@ public class Main {
         frame.setSize(800,600);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //da
+        
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(null);
         mainPanel.setBackground(Color.pink);
@@ -24,13 +25,13 @@ public class Main {
         helloLabel.setLocation(50,50);
         mainPanel.add(helloLabel);
 
-        JButton clickMeButton = new JButton("Click me");
+        JButton clickMeButton = new JButton("Turn Project to Repo");
         clickMeButton.setSize(100,50);
         clickMeButton.setLocation(50,200);
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("testing time");
+                GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
                 helloLabel.setText("Goodbye All");
             }
         });
