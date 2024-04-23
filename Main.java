@@ -10,11 +10,16 @@ import git.tools.client.GitSubprocessClient;
 
 import git.tools.client.GitSubprocessClient;
 
+import git.tools.client.GitSubprocessClient;
+
 public class Main {
     
     public static void main (String[] args) {
         String repoPath = "/Users/ryanseely/Desktop/Quinnipiac/Freshman/CSC111/MazeProject/Maze.java";
+ automatRepo
         GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
+
+ master
         JFrame frame = new JFrame("Swing Demo");
         frame.setSize(800,600);
         frame.setLocationRelativeTo(null);
@@ -42,6 +47,9 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                
+ automatRepo
+
+ master
                 helloLabel.setText("Goodbye All");
             }
         });
