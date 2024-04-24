@@ -27,14 +27,14 @@ public class Main {
 
         JTextField  box1;
         box1= new JTextField("");  // box where user inputs his file path
-        box1.setBounds(70,20, 250,50);
+        box1.setBounds(400,20, 250,50);
         frame.add(box1);  
         frame.setLayout(null);  
         frame.setVisible(true); 
 
         JTextField  box2;
         box2= new JTextField("");  // box where user inputs gitHub Username
-        box2.setBounds(50,45, 250,50);
+        box2.setBounds(400,150, 250,50);
         frame.add(box2);  
         frame.setLayout(null);  
         frame.setVisible(true); 
@@ -42,12 +42,12 @@ public class Main {
          
         JLabel helloLabel = new JLabel("Paste the path of the Project you want to turn into a Repo");
         helloLabel.setSize(325,100);
-        helloLabel.setLocation(50,20);
+        helloLabel.setLocation(120,160);
         mainPanel.add(helloLabel);
 
         JLabel gitUserName = new JLabel("Input your GitHub UserName");
         gitUserName.setSize(325,100);
-        gitUserName.setLocation(50,100);
+        gitUserName.setLocation(70,45);
         mainPanel.add(gitUserName);
 
         
