@@ -1,13 +1,17 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.File;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-
 import git.tools.client.GitSubprocessClient;
+
+
 
 public class Main {
     
@@ -19,7 +23,7 @@ public class Main {
         frame.setSize(800,600);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+        
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(null);
         mainPanel.setBackground(Color.pink);
@@ -27,8 +31,9 @@ public class Main {
 
         JLabel helloLabel = new JLabel("Hello World");
         helloLabel.setSize(100,100);
-        helloLabel.setLocation(50,50);
+        helloLabel.setLocation(50,20);
         mainPanel.add(helloLabel);
+
 
         JButton ignoreButton = new JButton("Git Ignore and Readme");
         ignoreButton.setSize(100,50);
@@ -36,6 +41,16 @@ public class Main {
         ignoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                File readMe = new File("README.md");
+                System.out.println("README file Created");
+
+
+                File gitIgnore = new File(".gitignore");
+                System.out.println("git Ignore file Created");
+
+
+
                 
                 String gitAddFile = gitSubprocessClient.gitAddFile("README.md");
                 String gitAddignore = gitSubprocessClient.gitAddFile(".gitignore");
@@ -50,20 +65,27 @@ public class Main {
         
        
 
-        JButton clickMeButton = new JButton("Click me");
-        clickMeButton.setSize(100,50);
-        clickMeButton.setLocation(50,200);
+      
+        JButton clickMeButton = new JButton("1.Turn Project to Repo");
+        clickMeButton.setSize(200,50);
+        clickMeButton.setLocation(50,100);
+
+        JButton push = new JButton("2.Initial Push");
+        push.setSize(200,50);
+        push.setLocation(50,150);
+
+
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               
                
                 helloLabel.setText("Goodbye All");
             }
         });
         mainPanel.add(clickMeButton);
+        mainPanel.add(push);
 
-
+        
         frame.setVisible(true);
 
 
