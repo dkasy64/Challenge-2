@@ -32,24 +32,34 @@ public class Main {
 
         JTextField  box1;
         box1= new JTextField("");  // box where user inputs his file path
-        box1.setBounds(400,20, 250,50);
+        box1.setBounds(300,60, 250,50);
         mainPanel.add(box1);  
-        frame.setLayout(null);  
-        frame.setVisible(true); 
+        mainPanel.setLayout(null);  
+        mainPanel.setVisible(true); 
 
         JTextField  box2;
         box2= new JTextField("");  // box where user inputs gitHub Username
-        box2.setBounds(400,150, 250,50);
+        box2.setBounds(400,200, 250,50);
         mainPanel.add(box2);  
-        frame.setLayout(null);  
-        frame.setVisible(true); 
+        mainPanel.setLayout(null);  
+        mainPanel.setVisible(true); 
     
          
         JLabel helloLabel = new JLabel("Paste the path of the Project you want to turn into a Repo");
         helloLabel.setSize(325,100);
-        helloLabel.setLocation(50,160);
+        helloLabel.setLocation(50,180);
         mainPanel.add(helloLabel);
         helloLabel.setVisible(true);
+
+
+        // JLabel repoName = new JLabel("What do you");
+        // repoName.setSize(325,100); make a input box next to text asking for repo name
+        // repoName.setLocation(50,180);
+        // mainPanel.add(repoName);
+        // repoName.setVisible(true);
+
+        //to-do generate a git ignore
+
 
 
 
@@ -132,9 +142,11 @@ public class Main {
         
                 String repoPath = box1.getText(); // reads the path the user inputed
                 GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
-                String gitInit = gitSubprocessClient.gitInit(); // git init command
-                String gitRemoteAdd = gitSubprocessClient.gitRemoteAdd("origin", "https://github.com/");// ask for username
-        
+
+                String gitInit = gitSubprocessClient.gitInit(); // git init command 
+                
+                String gitRemoteAdd = gitSubprocessClient.gitRemoteAdd("origin", "https://github.com/"+ box2.getText());// ask for username
+                
             }
 
         });
