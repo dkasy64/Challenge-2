@@ -15,7 +15,6 @@ import javax.swing.WindowConstants;
 import git.tools.client.GitSubprocessClient;
 
 public class Main {
-
     public static void main (String[] args) {
 
            
@@ -59,38 +58,42 @@ public class Main {
             @Override
 
             public void actionPerformed(ActionEvent e) {
-               
-              try{  
+                try{  
 
 
-                File readMe = new File("README.md");
-                if (readMe.createNewFile()){
-                    System.out.println("README file Created" + readMe.getName());
-
+                    File readMe = new File("README.md");
+                    if (readMe.createNewFile()){
+                        System.out.println("README file Created" + readMe.getName());
+    
+                    } else {
+                        System.out.println("File Already exists.");
+                    }
+                }catch (IOException t){
+                    System.out.println("An error occured.");
+                    t.printStackTrace();
+                }
+                try{
+    
+                    File gitIgnore = new File(".gitignore");
+                if (gitIgnore.createNewFile()){
+                    System.out.println("Ignore file Created" + gitIgnore.getName());
+    
                 } else {
                     System.out.println("File Already exists.");
                 }
-            }catch (IOException e){
-                System.out.println("An error occured.");
-                e.printStackTrace();
+            }catch (IOException f){
+                    System.out.println("An error occured.");
+                    f.printStackTrace();
             }
-            try{
 
-                File gitIgnore = new File(".gitignore");
-            if (gitIgnore.createNewFile()){
-                System.out.println("Ignore file Created" + gitIgnore.getName());
-
-            } else {
-                System.out.println("File Already exists.");
             }
-        }catch (IOException f){
-                System.out.println("An error occured.");
-                f.printStackTrace();
-        }
+               
+            
 
             
         
-        });
+    });
+    
     
      
     
@@ -121,20 +124,33 @@ public class Main {
 
 
         clickMeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+        
+                String repoPath = box1.getText(); // reads the path the user inputed
+                GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
+                String gitInit = gitSubprocessClient.gitInit(); // git init command
+                String gitRemoteAdd = gitSubprocessClient.gitRemoteAdd("origin", "https://github.com/");// ask for username
+        
+            }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
+        });
 
-        String repoPath = box1.getText(); // reads the path the user inputed
-        GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
-        String gitInit = gitSubprocessClient.gitInit(); // git init command
-        String gitRemoteAdd = gitSubprocessClient.gitRemoteAdd("origin", "https://github.com/");// ask for username
+   
 
-    }
-});
+    
 
 mainPanel.add(clickMeButton);mainPanel.add(push);
 
 frame.setVisible(true);
-    }
+
+
+
+ }
 }
+
+
+
+
+
+
