@@ -60,8 +60,9 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 try{  
 
-
-                    File readMe = new File("README.md");
+                    String directoryPath = box1.getText();
+                    String fileName = "README.md";
+                    File readMe = new File(box1.getText() + "README.md");
                     if (readMe.createNewFile()){
                         System.out.println("README file Created" + readMe.getName());
     
@@ -73,8 +74,10 @@ public class Main {
                     t.printStackTrace();
                 }
                 try{
+                    String pathDirectory = box1.getText();
+                    String fileName = ".gitignore";
     
-                    File gitIgnore = new File(".gitignore");
+                    File gitIgnore = new File(box1.getText() + ".gitignore");
                 if (gitIgnore.createNewFile()){
                     System.out.println("Ignore file Created" + gitIgnore.getName());
     
