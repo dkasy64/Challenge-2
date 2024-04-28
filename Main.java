@@ -4,8 +4,6 @@ import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.File;  // Import the File class
 import java.io.IOException;  // Import the IOException class to handle errors
-
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,7 +13,7 @@ import javax.swing.WindowConstants;
 import git.tools.client.GitSubprocessClient;
 
 public class Main {
-    public static void main (String[] args) {
+    public static void main (String[] args) {  
         
 
            
@@ -90,24 +88,21 @@ public class Main {
 
             }
                
+               
+            
+
+            
+        
+        
             
 
             
         
     });
     
-    
-     
-    
-    
         mainPanel.add(ignoreButton);
 
         frame.setVisible(true);
-            
-        
-       
-
-      
 
         JLabel gitUserName = new JLabel("Input your GitHub UserName");
         gitUserName.setSize(325,100);
@@ -115,8 +110,6 @@ public class Main {
         mainPanel.add(gitUserName);
         gitUserName.setVisible(true);
 
-        
- 
         JButton clickMeButton = new JButton("1.Turn Project to Repo");
         clickMeButton.setSize(200,50);
         clickMeButton.setLocation(50,300);
@@ -124,7 +117,6 @@ public class Main {
         JButton push = new JButton("2.Initial Push");
         push.setSize(200,50);
         push.setLocation(50,350);
-
 
         clickMeButton.addActionListener(new ActionListener() {
             @Override
