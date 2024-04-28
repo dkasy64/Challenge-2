@@ -52,20 +52,28 @@ public class Main {
         helloLabel.setVisible(true);
 
 
-        // JLabel repoName = new JLabel("What do you");
-        // repoName.setSize(325,100); make a input box next to text asking for repo name
-        // repoName.setLocation(50,180);
-        // mainPanel.add(repoName);
-        // repoName.setVisible(true);
+        JLabel repoName = new JLabel("What do you want to name your Repo");
+        repoName.setSize(325,100); //make a input box next to text asking for repo name
+        repoName.setLocation(50,110);
+        mainPanel.add(repoName);
+        repoName.setVisible(true);
 
-        //to-do generate a git ignore
+        JTextField repoNameInput = new JTextField("");
+        repoNameInput.setSize(250,50); //make a input box next to text asking for repo name
+        repoNameInput.setLocation(300,125);
+        mainPanel.add(repoNameInput);
+        repoNameInput.setVisible(true);
+
+        
+
+      
 
 
 
 
-        JButton ignoreButton = new JButton("Git Ignore and Readme");
-        ignoreButton.setSize(100,50);
-        ignoreButton.setLocation(80,100);
+        JButton ignoreButton = new JButton("2.Git Ignore and Readme");
+        ignoreButton.setSize(200,50);
+        ignoreButton.setLocation(50,350);
         ignoreButton.addActionListener(new ActionListener() {
             @Override
 
@@ -125,15 +133,21 @@ public class Main {
         mainPanel.add(gitUserName);
         gitUserName.setVisible(true);
 
+        JButton output = new JButton("4.Output Repo Url");
+        output.setSize(200,50);
+        output.setLocation(50,450);
+        mainPanel.add(output);
+        output.setVisible(true);
+
         
  
         JButton clickMeButton = new JButton("1.Turn Project to Repo");
         clickMeButton.setSize(200,50);
         clickMeButton.setLocation(50,300);
 
-        JButton push = new JButton("2.Initial Push");
+        JButton push = new JButton("3.Initial Push");
         push.setSize(200,50);
-        push.setLocation(50,350);
+        push.setLocation(50,400);
 
 
         clickMeButton.addActionListener(new ActionListener() {
@@ -151,13 +165,14 @@ public class Main {
 
         });
 
+
+
    
 
     
 
-mainPanel.add(clickMeButton);mainPanel.add(push);
-
-frame.setVisible(true);
+        mainPanel.add(clickMeButton);mainPanel.add(push);
+        frame.setVisible(true);
 
 
 
