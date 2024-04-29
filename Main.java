@@ -25,30 +25,29 @@ public class Main {
         mainPanel.setBackground(Color.pink);
         frame.setContentPane(mainPanel);
 
-        JTextField  box1;
-        box1= new JTextField("testing");  // box where user inputs his file path
-        box1.setBounds(300,60, 250,50);
-        mainPanel.add(box1);  
+        JTextField  gitUserName; // Text Field for GitHub Username
+        gitUserName= new JTextField("testing");
+        gitUserName.setBounds(300,60, 250,50);
+        mainPanel.add(gitUserName);  
         mainPanel.setLayout(null);  
         mainPanel.setVisible(true); 
 
-        JTextField  box2;
-        box2= new JTextField("testing part 2");  // box where user inputs gitHub Username
-        box2.setBounds(400,200, 250,50);
-        mainPanel.add(box2);  
+        JTextField  filePath; //Text Field for Directory file path
+        filePath= new JTextField("testing part 2");  // box where user inputs gitHub Username
+        filePath.setBounds(400,200, 250,50);
+        mainPanel.add(filePath);  
         mainPanel.setLayout(null);  
         mainPanel.setVisible(true); 
     
-         
+        // Text next to file path input 
         JLabel helloLabel = new JLabel("Paste the path of the Project you want to turn into a Repo");
         helloLabel.setSize(325,100);
         helloLabel.setLocation(50,180);
         mainPanel.add(helloLabel);
         helloLabel.setVisible(true);
 
-
         JLabel repoName = new JLabel("What do you want to name your Repo");
-        repoName.setSize(325,100); //make a input box next to text asking for repo name
+        repoName.setSize(325,100); // Label for input box for repo name
         repoName.setLocation(50,110);
         mainPanel.add(repoName);
         repoName.setVisible(true);
@@ -96,11 +95,11 @@ public class Main {
         mainPanel.add(ignoreButton);
         frame.setVisible(true);
             
-        JLabel gitUserName = new JLabel("Input your GitHub UserName");
-        gitUserName.setSize(325,100);
-        gitUserName.setLocation(70,45);
-        mainPanel.add(gitUserName);
-        gitUserName.setVisible(true);
+        JLabel gitUserNameLabel = new JLabel("Input your GitHub UserName");
+        gitUserNameLabel.setSize(325,100);
+        gitUserNameLabel.setLocation(70,45);
+        mainPanel.add(gitUserNameLabel);
+        gitUserNameLabel.setVisible(true);
 
         JButton output = new JButton("4.Output Repo Url");
         output.setSize(200,50);
@@ -108,7 +107,6 @@ public class Main {
         mainPanel.add(output);
         output.setVisible(true);
 
- 
         JButton clickMeButton = new JButton("1.Turn Project to Repo");
         clickMeButton.setSize(200,50);
         clickMeButton.setLocation(50,300);
@@ -120,13 +118,17 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
         
-                String repoPath = box1.getText(); // reads the path the user inputed
+                String repoPath = filePath.getText(); // reads the path the user inputed
                 GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
 
                 String gitInit = gitSubprocessClient.gitInit(); // git init command 
                 
-                String gitRemoteAdd = gitSubprocessClient.gitRemoteAdd("origin", "https://github.com/"+ box2.getText());// ask for username
+                String gitRemoteAdd = gitSubprocessClient.gitRemoteAdd("origin", "https://github.com/"+ gitUserName.getText());// ask for username
                 
+                //need to create error handling 
+
+                //So We know it worked
+                System.out.println("Success in creating the repo on the computer");
             }
 
         });
