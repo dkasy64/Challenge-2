@@ -64,12 +64,6 @@ public class Main {
         mainPanel.add(repoNameInput);
         repoNameInput.setVisible(true);
 
-        
-
-      
-
-
-
 
         JButton ignoreButton = new JButton("2.Git Ignore and Readme");
         ignoreButton.setSize(200,50);
