@@ -26,14 +26,14 @@ public class Main {
         frame.setContentPane(mainPanel);
 
         JTextField  gitUserName; // Text Field for GitHub Username
-        gitUserName= new JTextField("testing");
+        gitUserName= new JTextField("");
         gitUserName.setBounds(300,60, 250,50);
         mainPanel.add(gitUserName);  
         mainPanel.setLayout(null);  
         mainPanel.setVisible(true); 
 
         JTextField  filePath; //Text Field for Directory file path
-        filePath= new JTextField("testing part 2");  // box where user inputs gitHub Username
+        filePath= new JTextField(""); 
         filePath.setBounds(400,200, 250,50);
         mainPanel.add(filePath);  
         mainPanel.setLayout(null);  
@@ -64,8 +64,10 @@ public class Main {
         ignoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {  
-                    File readMe = new File("README.md");
+                try{  
+
+                    String directoryPath = filePath.getText();
+                    File readMe = new File(directoryPath + "\\README.md");
                     if (readMe.createNewFile()){
                         System.out.println("README file Created" + readMe.getName());
     
@@ -77,18 +79,21 @@ public class Main {
                     t.printStackTrace();
                 }
 
-                try {
-                    File gitIgnore = new File(".gitignore");
+                try{
+                    String directoryPath = filePath.getText();
+                    File gitIgnore = new File(directoryPath + "\\.gitignore");
+
                     if (gitIgnore.createNewFile()){
                         System.out.println("Ignore file Created" + gitIgnore.getName());
+    
                     } else {
                         System.out.println("File Already exists.");
                     }
-                } catch (IOException f){
+
+                } catch (IOException f) {
                     System.out.println("An error occured.");
                     f.printStackTrace();
                 }
-
             }          
         });
 
