@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;  // Import the File class
+import java.io.FileWriter;
 import java.io.IOException;  // Import the IOException class to handle errors
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -71,6 +72,10 @@ public class Main {
                     File readMe = new File(directoryPath + "\\README.md");
                     if (readMe.createNewFile()){
                         System.out.println("README file Created" + readMe.getName());
+                        // Write to README.md file
+                        FileWriter writer = new FileWriter(readMe);
+                        writer.write("# " + repoNameInput.getText()); // makes the header whatever the user named the repo
+                        writer.close(); // Remember to close the writer
     
                     } else {
                         System.out.println("File Already exists.");
