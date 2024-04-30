@@ -58,9 +58,7 @@ public class Main {
         mainPanel.add(repoNameInput);
         repoNameInput.setVisible(true);
 
-
-
-        JButton ignoreButton = new JButton("2.Git Ignore and Readme");
+        JButton ignoreButton = new JButton("2.Git Ignore and Readme"); //creates the gitignore and readMe
         ignoreButton.setSize(200,50);
         ignoreButton.setLocation(50,350);
         ignoreButton.addActionListener(new ActionListener() {
@@ -112,19 +110,25 @@ public class Main {
         mainPanel.add(gitUserNameLabel);
         gitUserNameLabel.setVisible(true);
 
-        JButton output = new JButton("4.Output Repo Url");
+        JButton output = new JButton("5.Output Repo Url");
         output.setSize(200,50);
-        output.setLocation(50,450);
+        output.setLocation(50,500);
         mainPanel.add(output);
         output.setVisible(true);
 
-        JButton clickMeButton = new JButton("1.Turn Project to Repo");
+        JButton clickMeButton = new JButton("1. Initialize Repo on Computer");
         clickMeButton.setSize(200,50);
         clickMeButton.setLocation(50,300);
 
-        JButton push = new JButton("3.Initial Push");
+        JButton create = new JButton("3. Create GitHub Repo ");
+        create.setSize(200,50);
+        create.setLocation(50,400);
+        mainPanel.add(create);
+        create.setVisible(true);
+
+        JButton push = new JButton("4.Initial Push");
         push.setSize(200,50);
-        push.setLocation(50,400);
+        push.setLocation(50,450);
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -136,7 +140,7 @@ public class Main {
                 
                 String gitRemoteAdd = gitSubprocessClient.gitRemoteAdd("origin", "https://github.com/"+ gitUserName.getText());// ask for username
                 
-                //need to create error handling 
+                //NEED TO CREATE ERROR HANDLING 
 
                 //So We know it worked
                 System.out.println("Success in creating the repo on the computer");
