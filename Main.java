@@ -125,6 +125,7 @@ public class Main {
                         // Write to README.md file
                         FileWriter writer = new FileWriter(readMe);
                         writer.write("# " + repoNameInput.getText()); // makes the header whatever the user named the repo
+                        writer.write("## " + descInput.getText());
                         writer.close(); // Remember to close the writer
     
                     } else {
