@@ -4,10 +4,13 @@ import java.awt.event.ActionListener;
 import java.io.File;  // Import the File class
 import java.io.FileWriter;
 import java.io.IOException;  // Import the IOException class to handle errors
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import git.tools.client.GitSubprocessClient;
@@ -79,11 +82,28 @@ public class Main {
         mainPanel.add(descLabel);
         descLabel.setVisible(true);
 
-        JTextField descInput = new JTextField("");
+        JTextField descInput = new JTextField(""); //description for created repo
         descInput.setSize(300, 50);
         descInput.setLocation(300, 290);
         mainPanel.add(descInput);
         descInput.setVisible(true);
+
+        JLabel visLabel = new JLabel("Select Repo Visibility");
+        visLabel.setSize(325, 100);
+        visLabel.setLocation(70, 330);
+        mainPanel.add(visLabel);
+        visLabel.setVisible(true);
+
+        ButtonGroup visible = new ButtonGroup(); // to group the radio buttons together so they are easier
+        JRadioButton publicRadioButton = new JRadioButton("Public"); 
+        JRadioButton privateRadioButton = new JRadioButton("Private");
+        publicRadioButton.setBounds(300, 360, 80, 50); 
+        privateRadioButton.setBounds(390, 360, 80, 50); 
+        visible.add(publicRadioButton);
+        visible.add(privateRadioButton);
+        mainPanel.add(publicRadioButton);
+        mainPanel.add(privateRadioButton);
+        publicRadioButton.setSelected(true); //so that there is something selected
 
         JButton ignoreButton = new JButton("2.Git Ignore and Readme"); //creates the gitignore and readMe
         ignoreButton.setSize(200,50);
@@ -160,6 +180,14 @@ public class Main {
 
                 String token = gitTokenInput.getText(); // Gets inputed token
                 String user =  gitUserName.getText(); // Gets inputed username
+                String desc = descInput.getText();
+
+                Boolean vis;
+                if (publicRadioButton.isSelected()) {
+                    vis = false;
+                } else {
+                    vis = true;
+                }
                 
                 GitHubApiClient gitHubApiClient = new GitHubApiClient(user, token); //allows the api client to work
 
@@ -168,9 +196,9 @@ public class Main {
                 RequestParams requestParams = new RequestParams();
                 requestParams.addParam("name", repoName); // name of repo
                 //NEED TO SET UP BOX FOR DESCRIPTION
-                requestParams.addParam("description", "this is a new repo"); // repo description
+                requestParams.addParam("description", desc); // repo description
                 //NEED TO SET UP PRIVATE OR PUBLIC SELECTION
-                requestParams.addParam("private", false); // if repo is private or not
+                requestParams.addParam("private", vis); // if repo is private or not
 
                 CreateRepoResponse createRepo = gitHubApiClient.createRepo(requestParams);
 
