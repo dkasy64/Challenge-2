@@ -15,7 +15,7 @@ import git.tools.client.GitSubprocessClient;
 public class Main {
     public static void main (String[] args) {
     
-        JFrame frame = new JFrame("Swing Demo");
+        JFrame frame = new JFrame("GitHub Application");
         frame.setSize(800,600);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -46,11 +46,11 @@ public class Main {
         mainPanel.add(helloLabel);
         helloLabel.setVisible(true);
 
-        JLabel repoName = new JLabel("What do you want to name your Repo");
-        repoName.setSize(325,100); // Label for input box for repo name
-        repoName.setLocation(50,110);
-        mainPanel.add(repoName);
-        repoName.setVisible(true);
+        JLabel repoNameLabel = new JLabel("What do you want to name your Repo?");
+        repoNameLabel.setSize(325,100); // Label for input box for repo name
+        repoNameLabel.setLocation(50,110);
+        mainPanel.add(repoNameLabel);
+        repoNameLabel.setVisible(true);
 
         JTextField repoNameInput = new JTextField("");
         repoNameInput.setSize(250,50); //make a input box next to text asking for repo name
@@ -58,9 +58,21 @@ public class Main {
         mainPanel.add(repoNameInput);
         repoNameInput.setVisible(true);
 
+        JLabel tokenLabel = new JLabel("Input GitHub Access Token");
+        tokenLabel.setSize(325, 100);
+        tokenLabel.setLocation(70, 240);
+        mainPanel.add(tokenLabel);
+        tokenLabel.setVisible(true);
+
+        JTextField gitTokenInput = new JTextField("");
+        gitTokenInput.setSize(250, 50);
+        gitTokenInput.setLocation(300, 270);
+        mainPanel.add(gitTokenInput);
+        gitTokenInput.setVisible(true);
+
         JButton ignoreButton = new JButton("2.Git Ignore and Readme"); //creates the gitignore and readMe
         ignoreButton.setSize(200,50);
-        ignoreButton.setLocation(300,300);
+        ignoreButton.setLocation(300,500);
         ignoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,23 +124,23 @@ public class Main {
 
         JButton output = new JButton("5.Output Repo Url");
         output.setSize(200,50);
-        output.setLocation(300,375);
+        output.setLocation(300,575);
         mainPanel.add(output);
         output.setVisible(true);
 
         JButton clickMeButton = new JButton("1. Initialize Repo on Computer");
         clickMeButton.setSize(200,50);
-        clickMeButton.setLocation(50,300);
+        clickMeButton.setLocation(50,500);
 
         JButton create = new JButton("3. Create GitHub Repo ");
         create.setSize(200,50);
-        create.setLocation(550,300);
+        create.setLocation(550,500);
         mainPanel.add(create);
         create.setVisible(true);
 
         JButton push = new JButton("4.Initial Push");
         push.setSize(200,50);
-        push.setLocation(50,375);
+        push.setLocation(50,575);
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
