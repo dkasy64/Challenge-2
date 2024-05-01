@@ -177,6 +177,7 @@ public class Main {
             @Override
             public void actionPerformed (ActionEvent e) {
                 //WILL NOT WORK IF REPO ALREADY EXISTS
+                // NEEDS ERROR HANDLING
 
                 String token = gitTokenInput.getText(); // Gets inputed token
                 String user =  gitUserName.getText(); // Gets inputed username
@@ -195,9 +196,7 @@ public class Main {
 
                 RequestParams requestParams = new RequestParams();
                 requestParams.addParam("name", repoName); // name of repo
-                //NEED TO SET UP BOX FOR DESCRIPTION
                 requestParams.addParam("description", desc); // repo description
-                //NEED TO SET UP PRIVATE OR PUBLIC SELECTION
                 requestParams.addParam("private", vis); // if repo is private or not
 
                 CreateRepoResponse createRepo = gitHubApiClient.createRepo(requestParams);
@@ -206,9 +205,25 @@ public class Main {
             }
         });
 
-        JButton push = new JButton("4.Initial Push");
+        JButton push = new JButton("4. Initial Commit + Push");
         push.setSize(200,50);
         push.setLocation(50,505);
+        push.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // NEEDS ERROR HANDLING
+
+                String repoPath = filePath.getText(); // reads the path the user inputed
+                GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
+
+                //adds changes, commits them, and pushes
+                String gitAddAll = gitSubprocessClient.gitAddAll();
+                String commit = gitSubprocessClient.gitCommit("Initial Commit");
+                String push = gitSubprocessClient.gitPush("master");
+              
+                System.out.println("Successful initial commit + push");
+            }
+        });
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -218,7 +233,7 @@ public class Main {
 
                 String gitInit = gitSubprocessClient.gitInit(); // git init command 
                 
-                String gitRemoteAdd = gitSubprocessClient.gitRemoteAdd("origin", "https://github.com/"+ gitUserName.getText());// ask for username
+                String gitRemoteAdd = gitSubprocessClient.gitRemoteAdd("origin", "https://github.com/"+ gitUserName.getText() + "/" + repoNameInput.getText() + ".git");// ask for username
                 
                 //NEED TO CREATE ERROR HANDLING 
 
