@@ -141,6 +141,98 @@ public class Main {
 
                     if (gitIgnore.createNewFile()){
                         System.out.println("Ignore file Created" + gitIgnore.getName());
+                        FileWriter writer = new FileWriter(gitIgnore);
+                        writer.write("## ##############################\r\n" + //
+                                                        "## Java\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        ".mtj.tmp/\r\n" + //
+                                                        ".vscode\r\n" + //
+                                                        "*.class\r\n" + //
+                                                        "*.jar\r\n" + //
+                                                        "*.war\r\n" + //
+                                                        "*.ear\r\n" + //
+                                                        "*.nar\r\n" + //
+                                                        "hs_err_pid*\r\n" + //
+                                                        "replay_pid*\r\n" + //
+                                                        "\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "## Maven\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "target/\r\n" + //
+                                                        "pom.xml.tag\r\n" + //
+                                                        "pom.xml.releaseBackup\r\n" + //
+                                                        "pom.xml.versionsBackup\r\n" + //
+                                                        "pom.xml.next\r\n" + //
+                                                        "pom.xml.bak\r\n" + //
+                                                        "release.properties\r\n" + //
+                                                        "dependency-reduced-pom.xml\r\n" + //
+                                                        "buildNumber.properties\r\n" + //
+                                                        ".mvn/timing.properties\r\n" + //
+                                                        ".mvn/wrapper/maven-wrapper.jar\r\n" + //
+                                                        "\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "## Gradle\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "bin/\r\n" + //
+                                                        "build/\r\n" + //
+                                                        ".gradle\r\n" + //
+                                                        ".gradletasknamecache\r\n" + //
+                                                        "gradle-app.setting\r\n" + //
+                                                        "!gradle-wrapper.jar\r\n" + //
+                                                        "\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "## IntelliJ\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "out/\r\n" + //
+                                                        ".idea/\r\n" + //
+                                                        ".idea_modules/\r\n" + //
+                                                        "*.iml\r\n" + //
+                                                        "*.ipr\r\n" + //
+                                                        "*.iws\r\n" + //
+                                                        "\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "## Eclipse\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        ".settings/\r\n" + //
+                                                        "bin/\r\n" + //
+                                                        "tmp/\r\n" + //
+                                                        ".metadata\r\n" + //
+                                                        ".classpath\r\n" + //
+                                                        ".project\r\n" + //
+                                                        "*.tmp\r\n" + //
+                                                        "*.bak\r\n" + //
+                                                        "*.swp\r\n" + //
+                                                        "*~.nib\r\n" + //
+                                                        "local.properties\r\n" + //
+                                                        ".loadpath\r\n" + //
+                                                        ".factorypath\r\n" + //
+                                                        "\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "## NetBeans\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "nbproject/private/\r\n" + //
+                                                        "build/\r\n" + //
+                                                        "nbbuild/\r\n" + //
+                                                        "dist/\r\n" + //
+                                                        "nbdist/\r\n" + //
+                                                        "nbactions.xml\r\n" + //
+                                                        "nb-configuration.xml\r\n" + //
+                                                        "\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "## Visual Studio Code\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        ".vscode/\r\n" + //
+                                                        ".code-workspace\r\n" + //
+                                                        "\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "## OS X\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        ".DS_Store\r\n" + //
+                                                        "\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "## Miscellaneous\r\n" + //
+                                                        "##############################\r\n" + //
+                                                        "*.log");
     
                     } else {
                         System.out.println("File Already exists.");
