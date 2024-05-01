@@ -386,7 +386,7 @@ public class Main {
                 System.out.println("Success in creating the repo on the computer");
                 }
                 catch(Exception N){
-                    System.out.println("An error ocurred");
+                    System.out.println("An error");
                 }
             }
 
