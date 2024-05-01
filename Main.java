@@ -125,6 +125,7 @@ public class Main {
                         // Write to README.md file
                         FileWriter writer = new FileWriter(readMe);
                         writer.write("# " + repoNameInput.getText()); // makes the header whatever the user named the repo
+                        writer.write("## " + descInput.getText());
                         writer.close(); // Remember to close the writer
     
                     } else {
@@ -314,7 +315,7 @@ public class Main {
             public void actionPerformed (ActionEvent e) {
                 //WILL NOT WORK IF REPO ALREADY EXISTS
                 // NEEDS ERROR HANDLING
-
+                try{
                 String token = gitTokenInput.getText(); // Gets inputed token
                 String user =  gitUserName.getText(); // Gets inputed username
                 String desc = descInput.getText();
@@ -339,6 +340,10 @@ public class Main {
 
                 System.out.println("Success in creating the GitHub repo");
             }
+            catch(Exception L){
+                System.out.println("an error ocurred");
+            }
+            }
         });
 
         JButton push = new JButton("4. Initial Commit + Push");
@@ -348,7 +353,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // NEEDS ERROR HANDLING
-
+                try{
                 String repoPath = filePath.getText(); // reads the path the user inputed
                 GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
 
@@ -358,12 +363,16 @@ public class Main {
                 String push = gitSubprocessClient.gitPush("master");
               
                 System.out.println("Successful initial commit + push");
+                }
+                catch(Exception M){
+                    System.out.println("an error ocurred");
+                }
             }
         });
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-        
+                try{
                 String repoPath = filePath.getText(); // reads the path the user inputed
                 GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
 
@@ -375,6 +384,10 @@ public class Main {
 
                 //So We know it worked
                 System.out.println("Success in creating the repo on the computer");
+                }
+                catch(Exception N){
+                    System.out.println("An error ocurred");
+                }
             }
 
         });
