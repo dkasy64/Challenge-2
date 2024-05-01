@@ -315,7 +315,7 @@ public class Main {
             public void actionPerformed (ActionEvent e) {
                 //WILL NOT WORK IF REPO ALREADY EXISTS
                 // NEEDS ERROR HANDLING
-
+                //try
                 String token = gitTokenInput.getText(); // Gets inputed token
                 String user =  gitUserName.getText(); // Gets inputed username
                 String desc = descInput.getText();
