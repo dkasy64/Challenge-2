@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import git.tools.client.GitSubprocessClient;
+import github.tools.client.GitHubApiClient;
+import github.tools.client.RequestParams;
+import github.tools.responseObjects.CreateRepoResponse;
 
 public class Main {
     public static void main (String[] args) {
@@ -141,7 +144,23 @@ public class Main {
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed (ActionEvent e) {
-                String token = gitTokenInput.getText(); //gets inputed token   
+                //WILL NOT WORK IF REPO ALREADY EXISTS
+
+                String token = gitTokenInput.getText(); // Gets inputed token
+                String user =  gitUserName.getText(); // Gets inputed username
+                
+                GitHubApiClient gitHubApiClient = new GitHubApiClient(user, token); //allows the api client to work
+
+                String repoName = repoNameInput.getText(); // Gets desired repo name
+
+                RequestParams requestParams = new RequestParams();
+                requestParams.addParam("name", repoName); // name of repo
+                //NEED TO SET UP BOX FOR DESCRIPTION
+                requestParams.addParam("description", "this is a new repo"); // repo description
+                //NEED TO SET UP PRIVATE OR PUBLIC SELECTION
+                requestParams.addParam("private", false); // if repo is private or not
+
+                CreateRepoResponse createRepo = gitHubApiClient.createRepo(requestParams);
             }
         });
 
@@ -171,13 +190,3 @@ public class Main {
         frame.setVisible(true);
     }
 }
-
-
-
-
-
-
-
-
-
-
