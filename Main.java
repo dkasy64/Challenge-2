@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -11,6 +12,7 @@ import java.io.IOException;  // Import the IOException class to handle errors
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,8 +24,31 @@ import git.tools.client.GitSubprocessClient;
 import github.tools.client.GitHubApiClient;
 import github.tools.client.RequestParams;
 import github.tools.responseObjects.CreateRepoResponse;
+import java.awt.Image;
 
 public class Main {
+
+    public class Logo extends JFrame{
+        JPanel jp = new JPanel();
+   JLabel jl = new JLabel();
+
+   public Logo()
+   {
+          setTitle("Logo");
+          setVisible(true);
+          setSize(400, 200);
+          setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+          jl.setIcon(new ImageIcon("logo.png"));
+          jp.add(jl);
+          add(jp);
+
+          validate();
+   }
+   
+
+
+    }
     public static void main (String[] args) {
     
         JFrame frame = new JFrame("GitHub Application");
@@ -176,6 +201,13 @@ public class Main {
         url.setForeground(Color.BLUE.darker());
         url.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
+     
+    
+       
+    
+       
+
+
         url.addMouseListener(new MouseAdapter() { //manages clicking of the link
  
             @Override
@@ -268,6 +300,9 @@ public class Main {
                 System.out.println("Successful initial commit + push");
             }
         });
+
+        
+
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -290,4 +325,5 @@ public class Main {
         mainPanel.add(clickMeButton);mainPanel.add(push);
         frame.setVisible(true);
     }
+
 }
