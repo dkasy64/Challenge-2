@@ -233,6 +233,7 @@ public class Main {
                                                         "## Miscellaneous\r\n" + //
                                                         "##############################\r\n" + //
                                                         "*.log");
+                                                        
     
                     } else {
                         System.out.println("File Already exists.");

@@ -1,0 +1,75 @@
+.header {
+    color: rgb(233, 226, 226);
+}
+
+.subheader {
+    color: rgb(245, 248, 244);
+    font-style: comic;
+}
+
+.navbar {
+    font-family: "Open Sans", sans-serif;
+    background: rgb(19, 22, 22);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+.nav-option {
+    color: rgb(243, 243, 247);
+    margin-right: 10px;
+}
+
+h1 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 60px; /* Adjust the size as needed */
+    font-weight: bold; /* Makes the font thicker */
+
+}
+body {
+    background-color: #39c8d5; 
+    background-image: url('https://static.vecteezy.com/system/resources/previews/006/413/058/non_2x/soft-beautiful-abstract-background-you-can-use-this-background-for-your-content-like-as-technology-video-gaming-promotion-card-banner-sports-education-presentation-website-anymore-vector.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+h2{
+    font-family: 'Raleway', sans-serif;
+    font-size: 40px; /* Adjust the size as needed */
+    font-weight: bold; /* Makes the font thicker */ 
+}   
+p1{
+    font-size: 30px;
+}
+p2{
+    font-size: 30px;
+}
+.border {
+    border: solid 5px rgb(0, 0, 0);
+   }
+
+.paragraph {
+    flex: 1; /* Allow the paragraph to grow and shrink as needed */
+    padding: 20px; /* Add some padding for spacing */
+}
+.image {
+    padding: 20px; /* Add some padding for spacing */
+}
+.image img {
+    width: 400px;
+     height: auto;
+     display: block;
+     margin-bottom: 200px;
+ }
+.container {
+    display: flex; /* Use flexbox layout */
+}
+.image2 img {
+    width: 400px;
+     height: auto;
+     display: block;
+     margin-bottom: 200px;
+ }
+ .small-margin img {
+    margin-bottom: 600px; /* Decreased margin for last two images */
+}
