@@ -72,7 +72,7 @@ public class Main {
 
         JButton ignoreButton = new JButton("2.Git Ignore and Readme"); //creates the gitignore and readMe
         ignoreButton.setSize(200,50);
-        ignoreButton.setLocation(300,500);
+        ignoreButton.setLocation(300,350);
         ignoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -124,23 +124,30 @@ public class Main {
 
         JButton output = new JButton("5.Output Repo Url");
         output.setSize(200,50);
-        output.setLocation(300,575);
+        output.setLocation(300,425);
         mainPanel.add(output);
         output.setVisible(true);
 
         JButton clickMeButton = new JButton("1. Initialize Repo on Computer");
         clickMeButton.setSize(200,50);
-        clickMeButton.setLocation(50,500);
+        clickMeButton.setLocation(50,350);
 
-        JButton create = new JButton("3. Create GitHub Repo ");
-        create.setSize(200,50);
-        create.setLocation(550,500);
-        mainPanel.add(create);
-        create.setVisible(true);
+        JButton createButton = new JButton("3. Create GitHub Repo ");
+        createButton.setSize(200,50);
+        createButton.setLocation(550,350);
+        mainPanel.add(createButton);
+        createButton.setVisible(true);
+
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                String token = gitTokenInput.getText(); //gets inputed token   
+            }
+        });
 
         JButton push = new JButton("4.Initial Push");
         push.setSize(200,50);
-        push.setLocation(50,575);
+        push.setLocation(50,425);
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
