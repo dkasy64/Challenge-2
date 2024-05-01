@@ -1,10 +1,15 @@
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;  // Import the File class
 import java.io.FileWriter;
 import java.io.IOException;  // Import the IOException class to handle errors
-
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -162,6 +167,45 @@ public class Main {
         output.setLocation(300,505);
         mainPanel.add(output);
         output.setVisible(true);
+
+        JLabel url = new JLabel("");
+        url.setSize(325, 70);
+        url.setLocation(555, 485);
+        mainPanel.add(url);
+        url.setVisible(false);
+        url.setForeground(Color.BLUE.darker());
+        url.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        url.addMouseListener(new MouseAdapter() { //manages clicking of the link
+ 
+            @Override
+            public void mouseClicked(MouseEvent e) { //opens link in browser
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/"+ gitUserName.getText() + "/" + repoNameInput.getText()));
+                } catch (IOException | URISyntaxException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) { // un underlines 
+                url.setText("https://github.com/"+ gitUserName.getText() + "/" + repoNameInput.getText());
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) { // underlines
+                url.setText("<html><a href=''>" + ("https://github.com/"+ gitUserName.getText() + "/" + repoNameInput.getText()) + "</a></html>");
+            }
+ 
+        });
+
+        output.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                url.setVisible(true);
+                url.setText("https://github.com/"+ gitUserName.getText() + "/" + repoNameInput.getText());
+            }
+        });
 
         JButton clickMeButton = new JButton("1. Initialize Repo on Computer");
         clickMeButton.setSize(200,50);
