@@ -131,7 +131,7 @@ public class Main {
     //    mainPanel.add(new JLabel(new ImageIcon("logo.png")));
 
     JLabel jl = new JLabel();
-    jl.setIcon(new ImageIcon("logo.png"));
+    jl.setIcon(new ImageIcon("media/logo.png"));
     jl.validate();
     jl.setSize(200,150);
     jl.setLocation(580,10);
