@@ -322,7 +322,7 @@ public class Main {
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-        
+                try{
                 String repoPath = filePath.getText(); // reads the path the user inputed
                 GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
 
@@ -334,6 +334,10 @@ public class Main {
 
                 //So We know it worked
                 System.out.println("Success in creating the repo on the computer");
+                }
+                catch(Exception N){
+                    System.out.println("An error");
+                }
             }
 
         });
