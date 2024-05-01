@@ -26,7 +26,7 @@ import github.tools.responseObjects.CreateRepoResponse;
 public class Main {
     public static void main (String[] args) {
     
-        JFrame frame = new JFrame("GitHub Application");
+        JFrame frame = new JFrame("GitHub Application (PROTOTYPE: NOT FOR COMMERCIAL USE)");
         frame.setSize(800,600);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
