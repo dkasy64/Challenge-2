@@ -28,28 +28,31 @@ import java.awt.Image;
 
 public class Main {
 
-    public class Logo extends JFrame{
-        JPanel jp = new JPanel();
-   JLabel jl = new JLabel();
 
-   public Logo()
-   {
-          setTitle("Logo");
-          setVisible(true);
-          setSize(400, 200);
-          setDefaultCloseOperation(EXIT_ON_CLOSE);
+//     public class Logo extends JFrame{
+//         JPanel jp = new JPanel();
+//    JLabel jl = new JLabel();
 
-          jl.setIcon(new ImageIcon("logo.png"));
-          jp.add(jl);
-          add(jp);
+//    public Logo()
+//    {
+//           setTitle("Logo");
+//           setVisible(true);
+//           setSize(400, 200);
+//           setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-          validate();
-   }
+//           jl.setIcon(new ImageIcon("logo.png"));
+//           jp.add(jl);
+//           add(jp);
+
+//           validate();
+//    }
    
 
 
-    }
+    // }
     public static void main (String[] args) {
+
+
     
         JFrame frame = new JFrame("GitHub Application");
         frame.setSize(800,600);
@@ -123,6 +126,19 @@ public class Main {
         visLabel.setLocation(70, 330);
         mainPanel.add(visLabel);
         visLabel.setVisible(true);
+
+
+    //    mainPanel.add(new JLabel(new ImageIcon("logo.png")));
+
+    JLabel jl = new JLabel();
+    jl.setIcon(new ImageIcon("logo.png"));
+    jl.validate();
+    jl.setSize(200,150);
+    jl.setLocation(580,10);
+    mainPanel.add(jl);
+
+
+       
 
         ButtonGroup visible = new ButtonGroup(); // to group the radio buttons together so they are easier
         JRadioButton publicRadioButton = new JRadioButton("Public"); 
