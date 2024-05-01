@@ -1,21 +1,32 @@
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;  // Import the File class
 import java.io.FileWriter;
 import java.io.IOException;  // Import the IOException class to handle errors
+import java.net.URI;
+import java.net.URISyntaxException;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import git.tools.client.GitSubprocessClient;
+import github.tools.client.GitHubApiClient;
+import github.tools.client.RequestParams;
+import github.tools.responseObjects.CreateRepoResponse;
 
 public class Main {
     public static void main (String[] args) {
     
-        JFrame frame = new JFrame("Swing Demo");
+        JFrame frame = new JFrame("GitHub Application");
         frame.setSize(800,600);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -27,42 +38,81 @@ public class Main {
 
         JTextField  gitUserName; // Text Field for GitHub Username
         gitUserName= new JTextField("");
-        gitUserName.setBounds(300,60, 250,50);
+        gitUserName.setBounds(300,10, 250,50);
         mainPanel.add(gitUserName);  
         mainPanel.setLayout(null);  
         mainPanel.setVisible(true); 
 
         JTextField  filePath; //Text Field for Directory file path
         filePath= new JTextField(""); 
-        filePath.setBounds(400,200, 250,50);
+        filePath.setBounds(400,150, 250,50);
         mainPanel.add(filePath);  
         mainPanel.setLayout(null);  
         mainPanel.setVisible(true); 
     
         // Text next to file path input 
-        JLabel helloLabel = new JLabel("Paste the path of the Project you want to turn into a Repo");
-        helloLabel.setSize(325,100);
-        helloLabel.setLocation(50,180);
-        mainPanel.add(helloLabel);
-        helloLabel.setVisible(true);
+        JLabel pathLabel = new JLabel("Paste the path of the Project you want to turn into a Repo");
+        pathLabel.setSize(345,100);
+        pathLabel.setLocation(50,120);
+        mainPanel.add(pathLabel);
+        pathLabel.setVisible(true);
 
-        JLabel repoName = new JLabel("What do you want to name your Repo");
-        repoName.setSize(325,100); // Label for input box for repo name
-        repoName.setLocation(50,110);
-        mainPanel.add(repoName);
-        repoName.setVisible(true);
+        JLabel repoNameLabel = new JLabel("What do you want to name your Repo?");
+        repoNameLabel.setSize(325,100); // Label for input box for repo name
+        repoNameLabel.setLocation(50,50);
+        mainPanel.add(repoNameLabel);
+        repoNameLabel.setVisible(true);
 
         JTextField repoNameInput = new JTextField("");
         repoNameInput.setSize(250,50); //make a input box next to text asking for repo name
-        repoNameInput.setLocation(300,125);
+        repoNameInput.setLocation(300,75);
         mainPanel.add(repoNameInput);
         repoNameInput.setVisible(true);
 
+        JLabel tokenLabel = new JLabel("Input GitHub Access Token");
+        tokenLabel.setSize(325, 100);
+        tokenLabel.setLocation(70, 200);
+        mainPanel.add(tokenLabel);
+        tokenLabel.setVisible(true);
 
+        JTextField gitTokenInput = new JTextField("");
+        gitTokenInput.setSize(300, 50);
+        gitTokenInput.setLocation(300, 220);
+        mainPanel.add(gitTokenInput);
+        gitTokenInput.setVisible(true);
 
-        JButton ignoreButton = new JButton("2.Git Ignore and Readme");
+        JLabel descLabel = new JLabel("Put Repo Description Here");
+        descLabel.setSize(325, 100);
+        descLabel.setLocation(70, 260);
+        mainPanel.add(descLabel);
+        descLabel.setVisible(true);
+
+        JTextField descInput = new JTextField(""); //description for created repo
+        descInput.setSize(300, 50);
+        descInput.setLocation(300, 290);
+        mainPanel.add(descInput);
+        descInput.setVisible(true);
+
+        JLabel visLabel = new JLabel("Select Repo Visibility");
+        visLabel.setSize(325, 100);
+        visLabel.setLocation(70, 330);
+        mainPanel.add(visLabel);
+        visLabel.setVisible(true);
+
+        ButtonGroup visible = new ButtonGroup(); // to group the radio buttons together so they are easier
+        JRadioButton publicRadioButton = new JRadioButton("Public"); 
+        JRadioButton privateRadioButton = new JRadioButton("Private");
+        publicRadioButton.setBounds(300, 360, 80, 50); 
+        privateRadioButton.setBounds(390, 360, 80, 50); 
+        visible.add(publicRadioButton);
+        visible.add(privateRadioButton);
+        mainPanel.add(publicRadioButton);
+        mainPanel.add(privateRadioButton);
+        publicRadioButton.setSelected(true); //so that there is something selected
+
+        JButton ignoreButton = new JButton("2.Git Ignore and Readme"); //creates the gitignore and readMe
         ignoreButton.setSize(200,50);
-        ignoreButton.setLocation(50,350);
+        ignoreButton.setLocation(300,430);
         ignoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -107,24 +157,117 @@ public class Main {
         frame.setVisible(true);
             
         JLabel gitUserNameLabel = new JLabel("Input your GitHub UserName");
-        gitUserNameLabel.setSize(325,100);
-        gitUserNameLabel.setLocation(70,45);
+        gitUserNameLabel.setSize(325,70);
+        gitUserNameLabel.setLocation(70,0);
         mainPanel.add(gitUserNameLabel);
         gitUserNameLabel.setVisible(true);
 
-        JButton output = new JButton("4.Output Repo Url");
+        JButton output = new JButton("5.Output Repo Url");
         output.setSize(200,50);
-        output.setLocation(50,450);
+        output.setLocation(300,505);
         mainPanel.add(output);
         output.setVisible(true);
 
-        JButton clickMeButton = new JButton("1.Turn Project to Repo");
-        clickMeButton.setSize(200,50);
-        clickMeButton.setLocation(50,300);
+        JLabel url = new JLabel("");
+        url.setSize(325, 70);
+        url.setLocation(555, 485);
+        mainPanel.add(url);
+        url.setVisible(false);
+        url.setForeground(Color.BLUE.darker());
+        url.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-        JButton push = new JButton("3.Initial Push");
+        url.addMouseListener(new MouseAdapter() { //manages clicking of the link
+ 
+            @Override
+            public void mouseClicked(MouseEvent e) { //opens link in browser
+                try {
+                    Desktop.getDesktop().browse(new URI("https://github.com/"+ gitUserName.getText() + "/" + repoNameInput.getText()));
+                } catch (IOException | URISyntaxException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) { // un underlines 
+                url.setText("https://github.com/"+ gitUserName.getText() + "/" + repoNameInput.getText());
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) { // underlines
+                url.setText("<html><a href=''>" + ("https://github.com/"+ gitUserName.getText() + "/" + repoNameInput.getText()) + "</a></html>");
+            }
+ 
+        });
+
+        output.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                url.setVisible(true);
+                url.setText("https://github.com/"+ gitUserName.getText() + "/" + repoNameInput.getText());
+            }
+        });
+
+        JButton clickMeButton = new JButton("1. Initialize Repo on Computer");
+        clickMeButton.setSize(200,50);
+        clickMeButton.setLocation(50,430);
+
+        JButton createButton = new JButton("3. Create GitHub Repo ");
+        createButton.setSize(200,50);
+        createButton.setLocation(550,430);
+        mainPanel.add(createButton);
+        createButton.setVisible(true);
+
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed (ActionEvent e) {
+                //WILL NOT WORK IF REPO ALREADY EXISTS
+                // NEEDS ERROR HANDLING
+
+                String token = gitTokenInput.getText(); // Gets inputed token
+                String user =  gitUserName.getText(); // Gets inputed username
+                String desc = descInput.getText();
+
+                Boolean vis;
+                if (publicRadioButton.isSelected()) {
+                    vis = false;
+                } else {
+                    vis = true;
+                }
+                
+                GitHubApiClient gitHubApiClient = new GitHubApiClient(user, token); //allows the api client to work
+
+                String repoName = repoNameInput.getText(); // Gets desired repo name
+
+                RequestParams requestParams = new RequestParams();
+                requestParams.addParam("name", repoName); // name of repo
+                requestParams.addParam("description", desc); // repo description
+                requestParams.addParam("private", vis); // if repo is private or not
+
+                CreateRepoResponse createRepo = gitHubApiClient.createRepo(requestParams);
+
+                System.out.println("Success in creating the GitHub repo");
+            }
+        });
+
+        JButton push = new JButton("4. Initial Commit + Push");
         push.setSize(200,50);
-        push.setLocation(50,400);
+        push.setLocation(50,505);
+        push.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // NEEDS ERROR HANDLING
+
+                String repoPath = filePath.getText(); // reads the path the user inputed
+                GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
+
+                //adds changes, commits them, and pushes
+                String gitAddAll = gitSubprocessClient.gitAddAll();
+                String commit = gitSubprocessClient.gitCommit("Initial Commit");
+                String push = gitSubprocessClient.gitPush("master");
+              
+                System.out.println("Successful initial commit + push");
+            }
+        });
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -134,9 +277,9 @@ public class Main {
 
                 String gitInit = gitSubprocessClient.gitInit(); // git init command 
                 
-                String gitRemoteAdd = gitSubprocessClient.gitRemoteAdd("origin", "https://github.com/"+ gitUserName.getText());// ask for username
+                String gitRemoteAdd = gitSubprocessClient.gitRemoteAdd("origin", "https://github.com/"+ gitUserName.getText() + "/" + repoNameInput.getText() + ".git");// ask for username
                 
-                //need to create error handling 
+                //NEED TO CREATE ERROR HANDLING 
 
                 //So We know it worked
                 System.out.println("Success in creating the repo on the computer");
@@ -148,13 +291,3 @@ public class Main {
         frame.setVisible(true);
     }
 }
-
-
-
-
-
-
-
-
-
-
