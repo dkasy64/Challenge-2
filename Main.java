@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -11,6 +12,7 @@ import java.io.IOException;  // Import the IOException class to handle errors
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,11 +24,37 @@ import git.tools.client.GitSubprocessClient;
 import github.tools.client.GitHubApiClient;
 import github.tools.client.RequestParams;
 import github.tools.responseObjects.CreateRepoResponse;
+import java.awt.Image;
 
 public class Main {
+
+
+//     public class Logo extends JFrame{
+//         JPanel jp = new JPanel();
+//    JLabel jl = new JLabel();
+
+//    public Logo()
+//    {
+//           setTitle("Logo");
+//           setVisible(true);
+//           setSize(400, 200);
+//           setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+//           jl.setIcon(new ImageIcon("logo.png"));
+//           jp.add(jl);
+//           add(jp);
+
+//           validate();
+//    }
+   
+
+
+    // }
     public static void main (String[] args) {
+
+
     
-        JFrame frame = new JFrame("GitHub Application (PROTOTYPE: NOT FOR COMMERCIAL USE)");
+        JFrame frame = new JFrame("GitHub Application");
         frame.setSize(800,600);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -99,6 +127,19 @@ public class Main {
         mainPanel.add(visLabel);
         visLabel.setVisible(true);
 
+
+    //    mainPanel.add(new JLabel(new ImageIcon("logo.png")));
+
+    JLabel jl = new JLabel();
+    jl.setIcon(new ImageIcon("media/logo.png"));
+    jl.validate();
+    jl.setSize(200,150);
+    jl.setLocation(580,10);
+    mainPanel.add(jl);
+
+
+       
+
         ButtonGroup visible = new ButtonGroup(); // to group the radio buttons together so they are easier
         JRadioButton publicRadioButton = new JRadioButton("Public"); 
         JRadioButton privateRadioButton = new JRadioButton("Private");
@@ -125,7 +166,6 @@ public class Main {
                         // Write to README.md file
                         FileWriter writer = new FileWriter(readMe);
                         writer.write("# " + repoNameInput.getText()); // makes the header whatever the user named the repo
-                        writer.write("## " + descInput.getText());
                         writer.close(); // Remember to close the writer
     
                     } else {
@@ -142,99 +182,7 @@ public class Main {
 
                     if (gitIgnore.createNewFile()){
                         System.out.println("Ignore file Created" + gitIgnore.getName());
-                        FileWriter writer = new FileWriter(gitIgnore);
-                        writer.write("## ##############################\r\n" + //
-                                                        "## Java\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        ".mtj.tmp/\r\n" + //
-                                                        ".vscode\r\n" + //
-                                                        "*.class\r\n" + //
-                                                        "*.jar\r\n" + //
-                                                        "*.war\r\n" + //
-                                                        "*.ear\r\n" + //
-                                                        "*.nar\r\n" + //
-                                                        "hs_err_pid*\r\n" + //
-                                                        "replay_pid*\r\n" + //
-                                                        "\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "## Maven\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "target/\r\n" + //
-                                                        "pom.xml.tag\r\n" + //
-                                                        "pom.xml.releaseBackup\r\n" + //
-                                                        "pom.xml.versionsBackup\r\n" + //
-                                                        "pom.xml.next\r\n" + //
-                                                        "pom.xml.bak\r\n" + //
-                                                        "release.properties\r\n" + //
-                                                        "dependency-reduced-pom.xml\r\n" + //
-                                                        "buildNumber.properties\r\n" + //
-                                                        ".mvn/timing.properties\r\n" + //
-                                                        ".mvn/wrapper/maven-wrapper.jar\r\n" + //
-                                                        "\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "## Gradle\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "bin/\r\n" + //
-                                                        "build/\r\n" + //
-                                                        ".gradle\r\n" + //
-                                                        ".gradletasknamecache\r\n" + //
-                                                        "gradle-app.setting\r\n" + //
-                                                        "!gradle-wrapper.jar\r\n" + //
-                                                        "\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "## IntelliJ\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "out/\r\n" + //
-                                                        ".idea/\r\n" + //
-                                                        ".idea_modules/\r\n" + //
-                                                        "*.iml\r\n" + //
-                                                        "*.ipr\r\n" + //
-                                                        "*.iws\r\n" + //
-                                                        "\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "## Eclipse\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        ".settings/\r\n" + //
-                                                        "bin/\r\n" + //
-                                                        "tmp/\r\n" + //
-                                                        ".metadata\r\n" + //
-                                                        ".classpath\r\n" + //
-                                                        ".project\r\n" + //
-                                                        "*.tmp\r\n" + //
-                                                        "*.bak\r\n" + //
-                                                        "*.swp\r\n" + //
-                                                        "*~.nib\r\n" + //
-                                                        "local.properties\r\n" + //
-                                                        ".loadpath\r\n" + //
-                                                        ".factorypath\r\n" + //
-                                                        "\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "## NetBeans\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "nbproject/private/\r\n" + //
-                                                        "build/\r\n" + //
-                                                        "nbbuild/\r\n" + //
-                                                        "dist/\r\n" + //
-                                                        "nbdist/\r\n" + //
-                                                        "nbactions.xml\r\n" + //
-                                                        "nb-configuration.xml\r\n" + //
-                                                        "\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "## Visual Studio Code\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        ".vscode/\r\n" + //
-                                                        ".code-workspace\r\n" + //
-                                                        "\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "## OS X\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        ".DS_Store\r\n" + //
-                                                        "\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "## Miscellaneous\r\n" + //
-                                                        "##############################\r\n" + //
-                                                        "*.log");
-                        writer.close();
+    
                     } else {
                         System.out.println("File Already exists.");
                     }
@@ -268,6 +216,13 @@ public class Main {
         url.setVisible(false);
         url.setForeground(Color.BLUE.darker());
         url.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+     
+    
+       
+    
+       
+
 
         url.addMouseListener(new MouseAdapter() { //manages clicking of the link
  
@@ -315,7 +270,7 @@ public class Main {
             public void actionPerformed (ActionEvent e) {
                 //WILL NOT WORK IF REPO ALREADY EXISTS
                 // NEEDS ERROR HANDLING
-                try{
+
                 String token = gitTokenInput.getText(); // Gets inputed token
                 String user =  gitUserName.getText(); // Gets inputed username
                 String desc = descInput.getText();
@@ -340,10 +295,6 @@ public class Main {
 
                 System.out.println("Success in creating the GitHub repo");
             }
-            catch(Exception L){
-                System.out.println("an error ocurred");
-            }
-            }
         });
 
         JButton push = new JButton("4. Initial Commit + Push");
@@ -353,7 +304,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // NEEDS ERROR HANDLING
-                try{
+
                 String repoPath = filePath.getText(); // reads the path the user inputed
                 GitSubprocessClient gitSubprocessClient = new GitSubprocessClient(repoPath);
 
@@ -363,12 +314,11 @@ public class Main {
                 String push = gitSubprocessClient.gitPush("master");
               
                 System.out.println("Successful initial commit + push");
-                }
-                catch(Exception M){
-                    System.out.println("an error ocurred");
-                }
             }
         });
+
+        
+
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -395,4 +345,5 @@ public class Main {
         mainPanel.add(clickMeButton);mainPanel.add(push);
         frame.setVisible(true);
     }
+
 }
