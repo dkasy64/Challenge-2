@@ -60,7 +60,7 @@ public class Main {
 
         JButton ignoreButton = new JButton("2.Git Ignore and Readme"); //creates the gitignore and readMe
         ignoreButton.setSize(200,50);
-        ignoreButton.setLocation(50,350);
+        ignoreButton.setLocation(300,300);
         ignoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,7 +112,7 @@ public class Main {
 
         JButton output = new JButton("5.Output Repo Url");
         output.setSize(200,50);
-        output.setLocation(50,500);
+        output.setLocation(300,375);
         mainPanel.add(output);
         output.setVisible(true);
 
@@ -122,13 +122,13 @@ public class Main {
 
         JButton create = new JButton("3. Create GitHub Repo ");
         create.setSize(200,50);
-        create.setLocation(50,400);
+        create.setLocation(550,300);
         mainPanel.add(create);
         create.setVisible(true);
 
         JButton push = new JButton("4.Initial Push");
         push.setSize(200,50);
-        push.setLocation(50,450);
+        push.setLocation(50,375);
         clickMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
